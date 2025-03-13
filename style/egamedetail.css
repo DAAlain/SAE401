@@ -627,6 +627,10 @@ body {
     .reservation-section {
         margin-top: 20px;
     }
+
+    .faq-container {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -705,8 +709,7 @@ body {
     }
 
     .faq-item {
-        width: 25%;
-        margin-inline: auto;
+        padding: 10px;
     }
 
     .faq-answer {

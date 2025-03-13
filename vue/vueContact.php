@@ -1,5 +1,8 @@
 <?php require_once 'includes/formulaire.class.php';
+require_once 'controleur/ctlcontact.class.php';
 $title = "Contact - WE ESCAPE";
+$ctlContact = new ctlContact();
+$message = $ctlContact->processForm();
 ?>
 <div class="contact-container">
     <div class="background-lines2">
@@ -7,8 +10,13 @@ $title = "Contact - WE ESCAPE";
     </div>
     <div class="contact-content">
         <h2 class="contact-title" data-translate="contacter">Contactez-nous</h2>
+        <?php if ($message): ?>
+            <div class="message <?php echo strpos($message, 'Erreur') !== false ? 'error' : 'success'; ?>" id="notification">
+                <?php echo $message; ?>
+            </div>
+        <?php endif; ?>
         <form class="contact-form" action="index.php?action=contact" method="POST">
-            <?php $form = new Formulaire($_POST); ?>
+            <?php $form = new Formulaire(); ?>
             <div class="form-row">
                 <?php
                 echo $form->inputTextcontact('nom', 'NOM',   'nom-contact');
@@ -27,22 +35,17 @@ $title = "Contact - WE ESCAPE";
     </div>
 </div>
 
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Capture form data
-    $to = 'contact@alainda-ros.fr'; // Replace with your email address
-    $subject = htmlspecialchars($_POST['sujet']);
-    $message = 'Nom: ' . htmlspecialchars($_POST['nom']) . '\n';
-    $message .= 'Prénom: ' . htmlspecialchars($_POST['prenom']) . '\n';
-    $message .= 'Email: ' . htmlspecialchars($_POST['mail']) . '\n';
-    $message .= 'Message: ' . htmlspecialchars($_POST['message']) . '\n';
-    $headers = 'From: ' . htmlspecialchars($_POST['mail']);
-
-    // Send email
-    if (mail($to, $subject, $message, $headers)) {
-        echo 'Email sent successfully!';
-    } else {
-        echo 'Email sending failed.';
-    }
-}
-?>
+<!-- Ajout du script pour faire disparaître le message après 5 secondes -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const notification = document.getElementById('notification');
+        if (notification) {
+            setTimeout(function() {
+                notification.classList.add('fade-out');
+                setTimeout(function() {
+                    notification.style.display = 'none';
+                }, 300);
+            }, 5000);
+        }
+    });
+</script>

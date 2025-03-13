@@ -912,7 +912,9 @@ footer {
   }
 
   header {
-    width: 75%;
+    width: 295px;
+    margin: auto;
+    margin-top: 15px;
   }
 
   .bg-mountains {
@@ -1274,4 +1276,34 @@ footer {
     max-width: 1920px;
     margin: 0 auto;
   }
+}
+
+/* Styles pour les messages de notification */
+.message {
+  padding: 15px 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  max-width: 600px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  position: relative;
+}
+
+.success {
+  background-color: rgba(40, 167, 69, 0.1);
+  border: 2px solid #28a745;
+  color: #28a745;
+}
+
+.error {
+  background-color: rgba(220, 53, 69, 0.1);
+  border: 2px solid #dc3545;
+  color: #dc3545;
+}
+
+/* Animation de fade-out */
+.message.fade-out {
+  opacity: 0;
 }
