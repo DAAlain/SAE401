@@ -113,3 +113,24 @@
     height: 100%;
     object-fit: cover;
 }
+
+@media (max-width: 768px) {
+    .contact-content {
+        width: 100%;
+    }
+
+    .contact-form{
+        margin-inline: 10px;
+    }
+
+    .contact-title {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .form-row{
+        flex-direction: column;
+    }
+
+
+}
